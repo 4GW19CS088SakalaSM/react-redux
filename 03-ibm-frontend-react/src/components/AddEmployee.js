@@ -76,9 +76,10 @@
 // export default AddEmployee;
 import { useState } from "react";
 import axios from "axios";
+import EmpService from "../services/EmpService";
 const AddEmp = () => {
 
-    const backendUrl = 'http://localhost:9090/emp/add-emp';
+    //const backendUrl = 'http://localhost:9090/emp/add-emp';
     const [empData, setEmpData] = useState({ firstName: '', email: '', aadhar: '', salary: '' });
     const [errors, setErrors] = useState({});
 
@@ -140,10 +141,11 @@ const AddEmp = () => {
     const handleSubmit = (evt) => {
         evt.preventDefault();
         if (validateForm()) {
-            axios.post(backendUrl, empData)
+            //axios.post(backendUrl, empData)
+            EmpService.addEmployee(empData)
                 .then((resp) => {
-                    console.log(resp.data);
-                    alert(`${resp.data.firstName}  added successfully!`);
+                    console.log(resp);
+                    alert(`${resp.firstName}  added successfully!`);
                     setEmpData({ firstName: '', email: '', aadhar: '', salary: '' });
                 })
                 .catch(error => {

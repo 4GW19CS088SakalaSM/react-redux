@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import EmpService from "../services/EmpService";
 const DeleteEmp = () => {
 
     const [empData, setEmpData] = useState({ employeeId: '' });
@@ -10,10 +11,11 @@ const DeleteEmp = () => {
 
     const handleSubmit =(evt)=>{
         evt.preventDefault();
-        axios.delete(`http://localhost:9090/emp/delete-emp/${empData.employeeId}`,empData, {
-            withCredentials: true,
-            crossOrigin: true,
-          })
+        // axios.delete(`http://localhost:9090/emp/delete-emp/${empData.employeeId}`,empData, {
+        //     withCredentials: true,
+        //     crossOrigin: true,
+        //   })
+        EmpService.deleteById(empData.employeeId)
         .then((resp) => {
             if(resp.status===200)
             alert(`deleted successfully!`);
@@ -21,6 +23,7 @@ const DeleteEmp = () => {
         })
         .catch(error => {
             console.error("Error deleting employee:", error);
+            alert(`employee with ${empData.employeeId} is not found`)
         });
 
     }

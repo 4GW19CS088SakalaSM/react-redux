@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import EmpService from "../services/EmpService";
 
 const UpdateEmp = () => {
     const [employeeId, setEmployeeId] = useState('');
+    // const [selectedEmp, setSelectedEmp] = useState('');
     const [empData, setEmpData] = useState({ firstName: '', email: '', aadhar: '', salary: '' });
     const [errors, setErrors] = useState({});
 
@@ -29,14 +31,20 @@ const UpdateEmp = () => {
     const handleSubmit = (evt) => {
         evt.preventDefault();
         if (validateForm()) {
-            axios.put(`http://localhost:9090/emp/update-emp/${employeeId}`, empData)
+            // EmpService.getEmpById(employeeId).then(res =>{
+            //     console.log(res);
+            //     setSelectedEmp(res)
+            // })
+            //axios.put(`http://localhost:9090/emp/update-emp/${employeeId}`, empData)
+            EmpService.updateEmployee(employeeId,empData)
                 .then((resp) => {
-                    alert(`${resp.data.firstName} updated successfully!`);
+                    alert(`${resp.firstName} updated successfully!`);
                     setEmpData({ firstName: '', email: '', aadhar: '', salary: '' });
                     setEmployeeId('');
                 })
                 .catch(error => {
                     console.error("Error updating employee:", error);
+                    alert(`employee with ${employeeId} is not present`);
                 });
         }
     };

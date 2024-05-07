@@ -2,15 +2,25 @@ import axios from "axios";
 
 const BASE_URL="http://localhost:9090/emp/"
 const EmpService =  {
-    // addEmployee: async (empData) => {
-    //     try {
-    //         const response = await axios.post(`${BASE_URL}/add-emp`, empData);
-    //         return response.data;
-    //     } catch (error) {
-    //         console.log(error);
-    //         throw new Error(error);
-    //     }
-    //     },
+    addEmployee: async (empData) => {
+        try {
+            const response = await axios.post(`${BASE_URL}add-emp`, empData);
+            return response.data;
+        } catch (error) {
+            console.log(error);
+            throw new Error(error);
+        }
+        },
+    updateEmployee: async(employeeId,updatedData) =>{
+        try{
+            const response = await axios.put(`${BASE_URL}update-emp/${employeeId}`,updatedData)
+            return response.data;
+        } catch(error){
+            console.log(error);
+            throw new Error (error);
+        }
+
+    }, 
     getEmployee: async ()=>{
         try {
             const response = await axios.get(`${BASE_URL}get-all-emps`);
@@ -46,6 +56,16 @@ const EmpService =  {
         
 
     },
+
+    deleteById: async(employeeId)=>{
+        try{
+            const response= await axios.delete(`${BASE_URL}delete-emp/${employeeId}`)
+            return response
+        }catch(error){
+            console.log(error);
+            throw new Error(error);
+        }
+    }
 
 
 
