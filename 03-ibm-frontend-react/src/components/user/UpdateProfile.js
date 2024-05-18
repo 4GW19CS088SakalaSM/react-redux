@@ -38,32 +38,37 @@ const UpdateProfile = () => {
     };
 
     return (
-        <>
-            <h1>Update Your Profile</h1>
-            <form onSubmit={handleSubmit}>
+        <div className="">
+            
+            <div className="card d-flex flex-col shadow-lg" >
+            <div class="card-body">
+            <h1 className="card-title">UPDATE PROFILE</h1>
+            <form className="form form-group mx-2 py-2 my-2 py-2" onSubmit={handleSubmit}>
                 <label>First Name:</label>
-                <input type="text" name="firstName" value={formData.firstName}
+                <input className="form-control" type="text" name="firstName" value={formData.firstName}
                     onChange={handleChange} autoFocus required />
                 <br />
                 <label>Last Name:</label>
-                <input type="text" name="lastName" value={formData.lastName}
+                <input className="form-control" type="text" name="lastName" value={formData.lastName}
                     onChange={handleChange} required />
                 <br />
                 <label>Phone:</label>
-                <input type="number" name="phone" value={formData.phone}
+                <input className="form-control" type="number" name="phone" value={formData.phone}
                     onChange={handleChange} required />
                 <br />
                 <label>Email:</label>
-                <input type="email" name="email" value={formData.email}
+                <input className="form-control" type="email" name="email" value={formData.email}
                     onChange={handleChange} required />
                 <br />
                 <label>Avatar:</label>
-                <input type="text" name="avatar" value={formData.avatar}
+                <input className="form-control" type="text" name="avatar" value={formData.avatar}
                     onChange={handleChange} />
                 <br />
-                <button type="submit">Update Your Profile</button>
+                <button className="form-control btn btn-outline-light"  type="submit">Update Your Profile</button>
             </form>
-        </>
+            </div>
+            </div>
+        </div>
     );
 };
 
