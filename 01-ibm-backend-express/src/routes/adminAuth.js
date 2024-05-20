@@ -7,11 +7,11 @@ const secretKey = crypto.randomBytes(32).toString('hex');
 
 // Admin login route
 router.post('/admin/login', async (req, res) => {
-  const { name, password } = req.body;
+  const { email, password } = req.body;
 
   try {
-    if (name === 'admin' && password === 'admin') {
-      const token = jwt.sign({ name }, secretKey, { expiresIn: '1h' });
+    if (email === 'admin@gmail.com' && password === 'admin') {
+      const token = jwt.sign({ email }, secretKey, { expiresIn: '1h' });
       return res.status(200).json({ message: 'Admin logged in successfully', token });
     } else {
       return res.status(400).json({ message: 'Invalid admin credentials' });
